@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<meta charset="utf-8">
+<title>jQuery Add / Remove Table Rows Dynamically</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var name = $("#name").val();
+            var number = $("#number").val();
+            var type = $("#type").val();
+            if(name==""||number==""||type=="")
+            {
+              alert("Kindly fill all the mandatory feilds");
+              return;
+            }
+            fetch("http://localhost:8080/SDL/employee-validate", {
+              method: 'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify({
+      "employee_Name":  name
+  })
+          })
+              .then(res => res.json())
+              .then(data => {
+                
+                //alert(data)
+                
+               if(data==0)
+               {
+                var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + number + "</td><td>"+type+"</tr>";
+                $("table tbody").append(markup);
+               }
+               else
+               alert("This Employee Name has already been used");
+              });
+//   fetch(`http://localhost:8080/SDL/employee-validate/${name}`)
+//   .then(res => res.json())
+//   .then(data => filltable(data))
+//   .catch(error => console.log(error));
+       
+// function filltable(data)
+// {
+//   localStorage.setItem("count",data);
+// }
+// var count=localStorage.getItem("count")
+// if(count>0)
+// { alert(count)
+//   alert("Name already used")
+//   window.open("http://localhost:8080/ANB.html","_self")
+//   return;
+// }
+
+            
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+    
+</script>
+</head>
+<style>
+    .ANB{
+        margin: 7px 123px;
+        font-size: small;
+        padding: 10px;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<body>
+    <h1>ANB Mode</h1>
+    <div class="ANB">
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Employee Name</label>
+            <input type="email" class="form-control" id="name" >
+        
+          <label for="exampleFormControlInput1">Req Number</label>
+            <input type="email" class="form-control" id="number" >
+        <label for="exampleFormControlInput1">Req Type</label>
+          <input type="email" class="form-control" id="type" >
+        </div>
+          <input type="button" class="add-row" value="Add Row">
+        </form>
+        <table class="table" id='sampleTbl'>
+            <thead>
+              <tr>
+                <th scope="col">Select</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Req Number</th>
+                <th scope="col">Req Name</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        <button type="button" class="delete-row">Delete Row</button>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="abc()">Close</button>
+        <button type="button" class="btn btn-primary" id="submit">Submit</button>
+      </div>
+</body> 
+
+  <script src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js" integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU=" crossorigin="anonymous"></script>
+<script>
+    $('#submit').click( function() {
+    var $table = $('#sampleTbl');
+
+    var table = $table.tableToJSON(
+                      {
+                         onlyColumns:[1,2,3],
+                         headings: ['employee_Name','req_No','req_Type']
+                       });
+                       table.shift();
+    console.log(table);
+   // alert(JSON.stringify(table)); 
+    var id=localStorage.getItem("Commit");
+    //alert(localStorage.getItem("Commit"));
+    fetch(`http://localhost:8080/SDL/ANB/${id}`, {
+              method: 'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify(table)
+          })
+              .then(res => res.json())
+              .then(data => {
+               // alert(data)
+              });
+              alert("Your Request is now submiited for OD Approval")
+              window.open("http://localhost:8080/SDL.html","_self");
+   });
+    function abc()
+    {
+      window.open("http://localhost:8080/SDL.html","_self");
+    }
+   
+
+
+
+
+</script>
+</html>

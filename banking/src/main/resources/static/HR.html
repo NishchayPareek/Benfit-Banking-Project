@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+</style>
+<body>
+    <h1 class ="text-primary">Welcome to Benefit Banking Portal</h1>
+    <h5>Here is the list of requests that require your review</h2>
+    <table class="table table-striped table-responsive-md btn-table" id="mytable">
+
+      <thead>
+        <tr>
+          <th>Mode</th>
+            
+          <th>HC</th>
+          <th>ID</th>
+          <th>Name of SDL</th>
+          <th>Request Created On</th>
+          <th>Status of request</th>
+          <th>View Details</th>
+          <th>Review Request</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr>
+          <!-- <th scope="row">1</th>
+          
+          <td>ANB</td>
+          <td>3</td>
+          <td>
+              <button type="button" class="btn btn-outline-primary">View Data</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">Review</button>
+            </td> -->
+        </tr>
+        
+      </tbody>
+      
+        
+        </table>
+        
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">HR review</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Req Closure Check
+                  </label>
+                  <select class="form-control" id="closure_check" required>
+                    <option value="">Choose One</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Not Ok">Not Ok</option>
+                  </select>
+                  <label for="exampleFormControlSelect1">Req Type check		
+                </label>
+                  <select class="form-control" id="type_check" required>
+                    <option value="">Choose One</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Not Ok">Not Ok</option>
+                  </select>
+                  <label for="exampleFormControlSelect1">Attrition Check	
+                  </label>
+                  <select class="form-control" id="attr_check"required>
+                    <option value="">Choose One</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Not Ok">Not Ok</option>
+                  </select>
+                  <label for="exampleFormControlSelect1">IJP Check	
+                  </label>
+                  <select class="form-control" id="ijp_check"required>
+                    <option value="">Choose One</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Not Ok">Not Ok</option>
+                  </select>
+                  <label for="exampleFormControlSelect1" required>Comments	
+                </label>
+                  <input class="form-control" id="comments" placeholder="Comments(If any!!)" required>
+
+                </div>
+              
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Attachments</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" onclick="approve()" class="btn btn-success" >Approve</button>
+                  <button type="button" onclick="reject()"class="btn btn-danger" data-dismiss="modal">Reject</button>
+               
+              </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+ <!-- just a try -->
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table id="view-data-table" class="table table-striped">
+  
+          </table>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="hr.js">
+
+</script>
+
+</html>

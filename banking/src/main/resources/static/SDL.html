@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    button{
+        margin: 10px 100px;
+    }
+    th{
+      text-align: center;
+    }
+</style>
+<body >
+    <h1 class ="text-primary">Welcome to Benefit Banking Portal</h1>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Bank new saves</button>
+    <h3>My Benefit Banking tracker</h3>
+    <table id="mytable" class="table table-bordered">
+
+      <thead>
+        <tr>
+          <th>Mode</th>
+          <th>HC</th>
+          <th>ID</th>
+          <th>View Data</th>
+          <th>Review</th>
+          <th>Status of request</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr>
+          <!-- <th scope="row">1</th>
+          
+          <td>ANB</td>
+          <td>3</td>
+          <td>
+              <button type="button" class="btn btn-outline-primary">View Data</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">Review</button>
+            </td> -->
+        </tr>
+        
+      </tbody>
+      
+      </table>
+      
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter the mode and headcount</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Efficiency to be banked(FTE)</label>
+                  <input type="email" class="form-control" id="hc" placeholder="Enter HeadCount">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Select Benefit Banking Category</label>
+                  <select class="form-control" id="mode">
+                    <option value="ANB">Attrition Not Backfilled</option>
+                    <option value="ORC">Open Req Closed</option>
+                    <option value="IJP">Internal Job Posting</option>
+                    <option value="ATS">Add to Staff</option>
+                  </select>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" onclick="proceed()" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Just  a try -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table id="view-data-table" class="table table-striped">
+
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script src="sdl.js"></script>
+</html>
